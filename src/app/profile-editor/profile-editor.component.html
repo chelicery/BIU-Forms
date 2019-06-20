@@ -1,0 +1,47 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label>   Name  <input type="text" formControlName="name" name="name" required>  </label>   
+  
+  <label>    Surname:    <input type="text" formControlName="surname" required>  </label>
+  <label>    Email:   <input type="text" formControlName="email" required>  </label>
+  <label>    Phone:      <input type="text" formControlName=phone>    </label>
+  <label>   Pet
+    <p></p><input type="radio" formControlName="pet" value="other" required> other <br>
+    <input type="radio" formControlName="pet" value="cat"> cat <br>
+    <input type="radio" formControlName="pet" value="dog"> dog<br>
+  </label>  
+    <div [formGroup]="address" (ngSubmit)="onSubmit()">
+      <h3>Address</h3>
+      <label>      Street:      <input type="text" formControlName="street" required>    </label>
+      <label>      City:      <input type="text" formControlName="city" required>    </label>
+      <label>      Building number:      <input type="text" formControlName="building_nr" required>    </label>
+      <label>      Flat number:      <input type="text" formControlName="flat_nr">    </label>
+     </div>
+     <div [formGroup]="passwords" (ngSubmit)="onSubmit()">
+      <label>    Password:    <input type="password" formControlName="password" required></label>  
+      <label>    CofirmPassword:    <input type="password" formControlName="confirmPass" required></label>  
+     </div>
+  <div formGroupName="consents">
+      <h3>consents</h3>
+  <label id="hidden" > <input type="checkbox" formControlName="newsletter" required > Newsletter</label>
+  <label><input type="checkbox" formControlName="sms"> Sms</label>
+  
+  </div>
+  <button type="submit" [disabled]="!profileForm.valid || !passwords.valid">Submit</button>
+
+
+<hr>
+
+
+<p>
+  Form Value: {{ profileForm.value | json }}
+</p>
+
+<p>required fields: Name, Surname, Email, Pet, Street, City, Building number</p>
+<p>passwords must match</p>
+<p>
+  Form Status: {{ profileForm.status }}
+  address Status: {{ address.status }}
+  passm Status: {{ passwords.status }}
+  
+</p>
+
